@@ -39,10 +39,10 @@
 <table class="table" align="center">
     <tr>
         <td width="120" style="padding:5px;" align="center" valign="top">
-            <iframe frameborder="0" scrolling="no" width="120" src="<c:url value='/jsp/left.jsp'/>" name="left"></iframe>
+            <iframe frameborder="0" scrolling="no" width="120" src="<c:url value='/views/left.jsp'/>" name="left"></iframe>
         </td>
         <td>
-            <iframe frameborder="0" scrolling="no" src="<c:url value='/jsp/body.jsp'/>" name="body"></iframe>
+            <iframe frameborder="0" scrolling="no" src="<c:url value='/views/body.jsp'/>" name="body"></iframe>
         </td>
     </tr>
 </table>

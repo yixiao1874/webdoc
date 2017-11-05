@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--jstl依赖--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -19,11 +20,11 @@
 <body>
 <div id="menu" style="background-color:#FFE4C4;height:1000px;width:150px;float:left;">
     <br>
-    <a href="file?act=c:/" target="body">系统保留(C:)</a> <br>
+    <a href="/file/list?act=c:/" target="body">系统保留(C:)</a> <br>
     <br>
-    <a href="file?act=e:/" target="body">新加卷(E:)</a> <br>
+    <a href="/file/list?act=e:/" target="body">新加卷(E:)</a> <br>
     <br>
-    <a href="file?act=f:/" target="body">新加卷(F:)</a> <br>
+    <a href="/file/list?act=f:/" target="body">新加卷(F:)</a> <br>
 </div>
 </body>
 </html>

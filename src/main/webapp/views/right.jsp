@@ -21,7 +21,7 @@
     <c:if test="${!empty fileList }">
         <c:forEach var="list" items="${fileList }" >
 
-            <a href="file?act=${list.value}">${list.key}</a> <br>
+            <a href="/file/list?act=${list.value}">${list.key}</a> <br>
         </c:forEach>
     </c:if>
 </div>
