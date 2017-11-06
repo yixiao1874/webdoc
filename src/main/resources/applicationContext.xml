@@ -20,6 +20,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+
+
     <!--引入jdbc配置 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 

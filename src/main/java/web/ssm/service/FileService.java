@@ -1,5 +1,6 @@
 package web.ssm.service;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,38 +21,48 @@ public class FileService {
         Map<String,String> map = new HashMap<String,String>();
         File file = new File(act);
         if(file.isDirectory()){
-            File[] files = file.listFiles();
-            for(int i = 0; i<files.length; i++){
-                String str = files[i].toString();
-                String key = str.substring(str.lastIndexOf("\\")+1);
-                map.put(key,str.replace("\\","/"));
-            }
+            map = this.listFile(file);
+            return map;
             //日志记录
 
         }else{
-            FileInputStream in = null;
-            OutputStream out = null;
-            try {
-                resp.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(act, "UTF-8"));
-                in = new FileInputStream(file);
-                out = resp.getOutputStream();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            byte[] buffer = new byte[1024];
-            int len = 0;
-            try {
-                while((len=in.read(buffer))>0){
-                    out.write(buffer,0,len);
-                }
-                in.close();
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            downloadFile(file,resp,act);
+            return map;
+        }
 
+    }
 
+    public Map<String,String> listFile(File file){
+        Map<String,String> map = new HashMap<String, String>();
+        File[] files = file.listFiles();
+        for(int i = 0; i<files.length; i++){
+            String str = files[i].toString();
+            String key = str.substring(str.lastIndexOf("\\")+1);
+            map.put(key,str.replace("\\","/"));
         }
         return map;
+    }
+
+    public void downloadFile(File file,HttpServletResponse resp,String act){
+        FileInputStream in = null;
+        OutputStream out = null;
+        try {
+            resp.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(act, "UTF-8"));
+            in = new FileInputStream(file);
+            out = resp.getOutputStream();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        try {
+            while((len=in.read(buffer))>0){
+                out.write(buffer,0,len);
+            }
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
